@@ -25,7 +25,7 @@ SECRET_KEY = '&b3f3d*f3@00^(kx7)90bb96@cop)bn@c79!+0z*=i*zuonl=a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['185.20.226.54']
+ALLOWED_HOSTS = ['litstudio.ru', 'www.litstudio.ru']
 
 
 # Application definition
