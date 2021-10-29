@@ -1,9 +1,5 @@
-#! /bin/bash
+#!/usr/bin/env sh
 
-python manage.py makemigrations --no-input
+python manage.py migrate
 
-python manage.py migrate --no-input
-
-python manage.py collectstatic --no-input
-
-exec gunicorn prod.wsgi:application -b 0.0.0.0:8000 --reload
+exec gunicorn prod.wsgi:application --bind 0.0.0.0:8000 --reload -w 4

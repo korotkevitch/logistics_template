@@ -1,15 +1,21 @@
-FROM python:3.8
+FROM python:3.9-alpine
 
-WORKDIR /usr/src/app
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-COPY requirements.txt .
+WORKDIR /app
 
-COPY entrypoint.sh .
+RUN apk --update add
+RUN apk add gcc libc-dev libffi-dev jpeg-dev zlib-dev libjpeg
+
+RUN pip install --upgrade pip
+RUN chmod +x entrypoint.sh
+
+COPY ./requirements.txt .
+COPY ./entrypoint.sh .
 
 RUN pip install -r requirements.txt
 
-RUN chmod +x entrypoint.sh
-
 COPY . .
 
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
